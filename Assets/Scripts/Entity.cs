@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    private float hp = 10;
+    private float hp = 100;
 
-    public float Hp => hp;
+    public float Hp { get; set; }
 
 
     private void Update()
