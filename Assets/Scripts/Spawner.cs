@@ -35,6 +35,6 @@ public class Spawner : MonoBehaviour
     {
         MyInput instanc = Instantiate(monster, transform.position, Quaternion.identity).GetComponent<MyInput>();
         instanc.Speed = rnd.Next(200, 600)/100f;
-        print(instanc.Speed);
+        //print(instanc.Speed);
     }
 }

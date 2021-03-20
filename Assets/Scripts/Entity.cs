@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    private float hp = 100;
-
-    public float Hp { get; set; }
-
+    private float _hp = 100;
+    public float Hp => _hp;
 
     private void Update()
     {
-        if (hp <= 0)
+        if (_hp <= 0)
         {
             //DeathAnimation
             //TriggerGameOver
@@ -22,6 +20,9 @@ public class Entity : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D projectile)
     {
-        hp -= projectile.gameObject.GetComponent<Attack>().damage;
+        if (projectile.GetComponent<Attack>() != null)
+        {
+            _hp -= projectile.gameObject.GetComponent<Attack>().damage;
+        }
     }
 }

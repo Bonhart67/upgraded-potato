@@ -9,13 +9,11 @@ public class UI_HP : MonoBehaviour
 
     [SerializeField] private Entity entity;
 
-    // Start is called before the first frame update
     void Start()
     {
         _text = GetComponent<Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         _text.text = $"{entity.Hp}";
