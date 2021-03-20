@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Entity : MonoBehaviour
 {
@@ -17,12 +18,15 @@ public class Entity : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 
     private void OnTriggerEnter2D(Collider2D projectile)
     {
         if (projectile.GetComponent<Attack>() != null)
         {
             _hp -= projectile.gameObject.GetComponent<Attack>().damage;
+            PlayerStat.Instance._power.statValue--;
+            print(PlayerStat.Instance._power.statValue);
         }
     }
 }

@@ -14,10 +14,13 @@ namespace Jump
         private Vector2 playerSize;
         private Vector2 boxSize;
 
+        private Rigidbody2D rb;
+
         private void Awake()
         {
             playerSize = GetComponent<BoxCollider2D>().size;
             boxSize = new Vector2(playerSize.x, groundedSkin);
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
@@ -33,7 +36,7 @@ namespace Jump
         {
             if (jumpRequest)
             {
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
 
                 jumpRequest = false;
                 grounded = false;

@@ -16,11 +16,11 @@ namespace Jump
 
         private void FixedUpdate()
         {
-            if (rb.velocity.y < 0)
+            if (rb.velocity.y < -0.000001f)
             {
                 rb.gravityScale = fallMultiplier;
             }
-            else if (rb.velocity.y  > 0 && !Input.GetButton("Jump"))
+            else if (rb.velocity.y  > 0.000001f && !Input.GetButton("Jump"))
             {
                 rb.gravityScale = lowJumpMultiplier;
             }
