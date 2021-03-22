@@ -8,7 +8,7 @@ namespace Movement
     {
         private void Awake()
         {
-            Speed = 6f;
+            Speed = 15f;
         }
 
         void Update()

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 public class StatModifier
 {
     public readonly float Value;

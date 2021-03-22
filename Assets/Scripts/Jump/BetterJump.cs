@@ -26,7 +26,7 @@ namespace Jump
             }
             else
             {
-                rb.gravityScale = 1f;
+                rb.gravityScale = 5f;
             }
         }
     }

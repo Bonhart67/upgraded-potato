@@ -1,23 +1,22 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnityEngine;
+using System.Linq;
 
 public class Stat
 {
     public float BaseValue;
+    public string StatName;
 
-    private bool IsDirty = true;
+    private bool _isDirty = true;
     private float _value;
 
     public float Value
     {
         get
         {
-            if (IsDirty)
+            if (_isDirty)
             {
-                IsDirty = false;
+                _isDirty = false;
                 _value = CalculateFinaleValue();
             }
             return _value;
@@ -33,23 +32,23 @@ public class Stat
         StatModifiers = _statModifiers.AsReadOnly();
     }
     
-    public Stat(int baseValue) : this()
+    public Stat(int baseValue, string statName) : this()
     {
         BaseValue = baseValue;
-
+        StatName = statName;
     }
 
     public void AddModifier(StatModifier mod)
     {
         _statModifiers.Add(mod);
-        IsDirty = true;
+        _isDirty = true;
     }
 
     public bool RemoveModifier(StatModifier mod)
     {
-        if (_statModifiers.Remove(mod))
+        if (_statModifiers.Remove(_statModifiers.Find(x => x.Value == mod.Value)))
         {
-            IsDirty=true;
+            _isDirty=true;
             return true;
         }
 
@@ -58,12 +57,7 @@ public class Stat
 
     private float CalculateFinaleValue()
     {
-        float finaleValue = BaseValue;
-
-        for (int i = 0; i < _statModifiers.Count; i++)
-        {
-            finaleValue += _statModifiers[i].Value;
-        }
+        float finaleValue = BaseValue + _statModifiers.Sum(t => t.Value);
 
         return (float) Math.Round(finaleValue, 4);
     }
